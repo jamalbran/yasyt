@@ -3,8 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { AddressModule } from './address/address.module';
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -19,7 +17,6 @@ import { AddressModule } from './address/address.module';
       logging: false,
     }),
     UserModule,
-    AddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],
