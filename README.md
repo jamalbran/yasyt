@@ -10,6 +10,6 @@ In the main directory run
 $ docker-compose up --build
 ```
 
-[Client Access](http://localhost:3006/)
+[Client Access](http://localhost:3006/)  
 [Server Access](http://localhost:3000/api/docs)
 
