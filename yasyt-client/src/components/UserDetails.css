@@ -1,0 +1,57 @@
+.user-details-container {
+  width: 80%;
+  max-width: 800px; /* Adjust max-width as needed */
+  margin: auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding around the container */
+}
+
+.user-details-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  width: 100%; /* Ensures labels take full width */
+}
+
+.user-details-container input[type="text"],
+.user-details-container input[type="number"],
+.user-details-container select {
+  width: calc(100% - 10px); /* Adjust width and spacing as needed */
+  padding: 8px;
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  border: 1px solid #000000; /* Small black border */
+  margin-top: 5px;
+  box-sizing: border-box; /* Ensures padding and border are included in width */
+}
+
+.user-details-container .user-details-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-details-container .user-details-field label {
+  flex: 0 0 30%; /* Adjust label width as needed */
+  margin-right: 10px;
+}
+
+.user-details-container .user-details-field input,
+.user-details-container .user-details-field select {
+  flex: 1; /* Takes remaining space */
+}
+
+.user-details-container .user-details-buttons {
+  margin-top: 20px;
+}
+
+.user-details-container .user-details-buttons button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #000000; /* Small black border */
+}
+
+.user-details-container .user-details-buttons button:last-child {
+  margin-right: 0;
+}

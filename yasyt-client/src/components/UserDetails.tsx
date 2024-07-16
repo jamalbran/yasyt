@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { User } from "../entities/user.entity";
+import { User, Gender, Role, ActiveStatus } from "../entities/user.entity";
 import { deleteUserAsync } from "../redux/userSlice";
 import { AppDispatch } from "../redux/store";
 import { useDispatch } from "react-redux";
+import './UserDetails.css';
 
 interface UserDetailsProps {
   user: User;
@@ -20,11 +21,15 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user, isEditMode, onSave, onC
     setEditUser({ ...user });
   }, [user]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setEditUser((prevUser) => ({
-      ...prevUser,
-      [name]: value,
+
+    setEditUser(prevEditUser => ({
+      ...prevEditUser,
+      address: {
+        ...prevEditUser.address,
+        [name.includes("address.") ? name.substring(8) : name]: value,
+      },
     }));
   };
 
@@ -33,6 +38,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user, isEditMode, onSave, onC
   };
 
   const handleCancelChanges = () => {
+    setEditUser(user);
     onCancel();
   };
 
@@ -48,31 +54,75 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user, isEditMode, onSave, onC
   };
 
   return (
-    <div>
-      {isEditMode ? (
-        <form>
-          <label>
-            Name:
-            <input type="text" name="name" value={editUser.name} onChange={handleChange} />
-          </label>
-          <label>
-            Lastname:
-            <input type="text" name="lastname" value={editUser.lastname} onChange={handleChange} />
-          </label>
-        </form>
-      ) : (
-        <div>
-          <p>Name: {user.name}</p>
-          <p>Lastname: {user.lastname}</p>
-        </div>
-      )}
-      {isEditMode ? (
-        <div>
-          <button onClick={handleSaveChanges}>Save Changes</button>
-          <button onClick={handleCancelChanges}>Cancel Changes</button>
-        </div>
-      ) : ''}
-      <button onClick={handleDeleteUser}>Delete User</button>
+    <div className="user-details-container">
+      <div className="user-details-buttons">
+        {isEditMode ? (
+          <>
+            <button onClick={handleSaveChanges}>Save Changes</button>
+            <button onClick={handleCancelChanges}>Cancel</button>
+            <button onClick={handleDeleteUser}>Delete User</button>
+          </>
+        ) : ''}
+      </div>
+      <div>
+        <label className="user-details-field">
+          Name:
+          <input type="text" name="name" value={editUser.name} onChange={handleChange}  disabled={!isEditMode} />
+        </label>
+        <label className="user-details-field">
+          Lastname:
+          <input type="text" name="lastname" value={editUser.lastname} onChange={handleChange} disabled={!isEditMode} />
+        </label>
+        <label className="user-details-field">
+          Email: 
+          <input type="text" name="email" value={editUser.email} onChange={handleChange} disabled={!isEditMode} />
+        </label>
+        <label className="user-details-field">
+          Phone Number: <input type="text" name="phoneNumber" value={editUser.phoneNumber} onChange={handleChange} disabled={!isEditMode} />
+        </label>
+        <label className="user-details-field">
+          Gender:{' '}
+          <select name="gender" value={editUser.gender} onChange={handleChange} disabled={!isEditMode}>
+            {Object.values(Gender).map((gender) => (
+              <option key={gender} value={gender}>
+                {gender}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="user-details-field">
+          Profile Image: <input type="text" name="profileImage" value={editUser.profileImage} onChange={handleChange} disabled={!isEditMode}/>
+        </label>
+        <label className="user-details-field">
+          Address Number: <input type="text" name="address.number" value={editUser.address.number} onChange={handleChange} disabled={!isEditMode} />
+        </label>
+        <label className="user-details-field">
+          Address Street: <input type="text" name="address.street" value={editUser.address.street} onChange={handleChange} disabled={!isEditMode} />
+        </label>
+        <label className="user-details-field">
+          Address Zip Code: <input type="text" name="address.zipCode" value={editUser.address.zipCode} onChange={handleChange} disabled={!isEditMode} />
+        </label>
+        <label className="user-details-field">
+          Role:{' '}
+          <select name="role" value={editUser.role} onChange={handleChange} disabled={!isEditMode}>
+            {Object.values(Role).map((role) => (
+              <option key={role} value={role}>
+                {role}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="user-details-field">
+        Active User:{' '}
+          <select name="activeUser" value={editUser.activeUser} onChange={handleChange} disabled={!isEditMode}>
+            {Object.values(ActiveStatus).map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
     </div>
   );
 };

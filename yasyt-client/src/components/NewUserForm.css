@@ -1,0 +1,65 @@
+.new-user-form-container {
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.new-user-form-container h3 {
+  text-align: center;
+}
+
+.new-user-form-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.new-user-form-container input[type="text"],
+.new-user-form-container input[type="number"],
+.new-user-form-container select {
+  width: calc(100% - 10px);
+  padding: 8px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.new-user-form-container .new-user-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.new-user-form-container .new-user-field label {
+  flex: 0 0 30%;
+  margin-right: 10px;
+}
+
+.new-user-form-container .new-user-field input,
+.new-user-form-container .new-user-field select {
+  flex: 1;
+}
+
+.new-user-form-container .new-user-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.new-user-form-container .new-user-buttons button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #000000;
+}
+
+.new-user-form-container .new-user-buttons button:last-child {
+  margin-right: 0;
+}

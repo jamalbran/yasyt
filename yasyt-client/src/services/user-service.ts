@@ -23,12 +23,13 @@ export async function findAllUser(): Promise<User[] | undefined> {
 }
 
 export async function createUser(user: User): Promise<void> {
+  const { id, registerDate, ...userWithoutId } = user;
   try {
     const response = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify(user),
+      body: JSON.stringify(userWithoutId),
     });
 
     if (!response.ok) {

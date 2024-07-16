@@ -16,13 +16,30 @@ export type User = {
   // @Column()
   // birthdate: Date;
 
-  gender: string;
+  gender: Gender;
 
   profileImage: string;
 
   registerDate: Date;
 
-  role: string;
+  role: Role;
 
-  activeUser: string;
+  activeUser: ActiveStatus;
 };
+
+export enum Gender {
+  PreferNotToSay = "Prefer not to say",
+  Female = "Female",
+  Male = "Male",
+  NonBinary = "Non-binary",
+}
+
+export enum Role {
+  Admin = "Admin",
+  User = "User",
+}
+
+export enum ActiveStatus {
+  Active = "Active",
+  Inactive = "Inactive",
+}

@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../entities/user.entity";
-import { findAllUser, updateUser, deleteUser } from "../services/user-service";
+import {
+  findAllUser,
+  updateUser,
+  deleteUser,
+  createUser,
+} from "../services/user-service";
 import { AppThunk } from "./store";
 
 interface UserState {
@@ -119,6 +124,17 @@ export const deleteUserAsync =
     } catch (error: any) {
       dispatch(deleteUserFailure(error.message));
       console.error("Error deleting user:", error);
+    }
+  };
+
+export const createUserAsync =
+  (user: User): AppThunk =>
+  async (dispatch) => {
+    try {
+      await createUser(user);
+      dispatch(addUser(user));
+    } catch (error: any) {
+      console.error("Error creating user:", error);
     }
   };
 
